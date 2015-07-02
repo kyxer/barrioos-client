@@ -10,14 +10,22 @@
 	<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-	<div class="navbar navbar-default navbar-static-top">
+	<div ng-controller="NavbarCtrl" class="navbar navbar-default navbar-static-top">
 	  <div class="container">
 	    <ul class="nav navbar-nav">
 	      <a href="/" class="navbar-brand"><i class="ion-images"></i> barrioOS</a>
 	      <li><a href="#/">Inicio</a></li>
-	      <li><a href="#/iniciar-sesion">Iniciar Sesión</a></li>
-	      <li><a href="#/registrarse">Registrarse</a></li>
-	      <li><a ng-click="logout()" href="">Cerrar Sesión</a></li>
+	      <li ng-if="!isAuthenticated()" ><a href="#/iniciar-sesion">Iniciar Sesión</a></li>
+	      <li ng-if="!isAuthenticated()" ><a href="#/registrarse">Registrarse</a></li>
+	      <li ng-if="isAuthenticated()" ><a ng-click="logout()" href="">Cerrar Sesión</a></li>
+	    </ul>
+	    <ul class="nav navbar-nav navbar-right">
+	      <li ng-if="isAuthenticated() && currentUser.username">
+	        <a href="http://instagram.com/{{currentUser.username}}">
+	          <img class="media-object img-rounded" ng-src="{{currentUser.picture}}">
+	          @{{currentUser.username}}
+	        </a>
+	      </li>
 	    </ul>
 	  </div>
 	</div>
@@ -35,6 +43,7 @@
 	<script src="controllers/login.js"></script>
 	<script src="controllers/signup.js"></script>
 	<script src="directives/serverError.js"></script>
+	<script src="services/api.js"></script>
 
 </body>
 </html>

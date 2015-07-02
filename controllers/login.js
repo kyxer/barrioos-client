@@ -1,19 +1,18 @@
 angular.module('barrioos')
   .controller('LoginCtrl', function($scope, $window, $location, $rootScope, $auth) {
 
-    /*$scope.instagramLogin = function() {
-      $auth.authenticate('instagram')
-        .then(function(response) {
-          $window.localStorage.currentUser = JSON.stringify(response.data.user);
-          $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);
-        })
-        .catch(function(response) {
-          console.log(response.data);
-        });
-    };*/
-
+    if ($auth.isAuthenticated() && $rootScope.currentUser) {
+      $location.path("/");
+    }
+    
     $scope.emailLogin = function() {
-      $auth.login({ email: $scope.email, password: $scope.password })
+
+      var auth = {
+        email: $scope.email, 
+        password: $scope.password
+      }
+
+      $auth.login({ auth: auth  })
         .then(function(response) {
           $window.localStorage.currentUser = JSON.stringify(response.data.user);
           $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);

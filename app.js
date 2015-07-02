@@ -1,6 +1,5 @@
 angular.module('barrioos', ['ngRoute', 'ngMessages', 'satellizer'])
   .config(function($routeProvider, $authProvider) {
-
   	$routeProvider
 	.when('/', {
 		templateUrl: 'views/home.html',
@@ -32,4 +31,8 @@ angular.module('barrioos', ['ngRoute', 'ngMessages', 'satellizer'])
 	  authorizationEndpoint: 'https://api.instagram.com/oauth/authorize'
 	});*/
 
-  });
+  }).run(function($rootScope, $window, $auth) {
+	  if ($auth.isAuthenticated()) {
+	  	$rootScope.currentUser = JSON.parse($window.localStorage.currentUser);
+	  }
+});
