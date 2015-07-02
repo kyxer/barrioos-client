@@ -1,0 +1,38 @@
+<div class="container">
+
+  <div class="center-form panel">
+    <div class="panel-body">
+      <h4 class="text-center"><i class="ion-person-add"></i>  Resgistro</h4>
+      <form method="post" ng-submit="signup()" name="signupForm">
+
+        <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.name.$invalid && signupForm.name.$dirty }">
+          <input class="form-control input-lg" type="text" id="name" name="name" ng-model="name" placeholder="Nombre de Pila" required>
+          <span class="ion-person form-control-feedback"></span>
+        </div>
+
+        <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.email.$invalid && signupForm.email.$dirty }">
+          <input class="form-control input-lg" type="text" id="email" name="email" ng-model="email" placeholder="Correo" required>
+          <span class="ion-at form-control-feedback"></span>
+        </div>
+
+        <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.password.$invalid && signupForm.password.$dirty }">
+          <input class="form-control input-lg" type="password" name="password" ng-model="password" placeholder="Contraseña" required>
+          <span class="ion-key form-control-feedback"></span>
+        </div>
+
+        <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.postalCode.$invalid && signupForm.postalCode.$dirty }">
+          <input class="form-control input-lg" type="text" name="postalCode" ng-model="postalCode" placeholder="Código Postal" required>
+          <span class="ion-location form-control-feedback"></span>
+        </div>
+
+        <p class="text-center text-muted"><small>Al hacer clic en Registrarse, aceptas los <a href="#">términos y condiciones</a> y la <a href="#">política de privacidad</a></small></p>
+
+        <button type="submit" class="btn btn-block btn-primary">Registrarse</button>
+        <br/>
+
+        <p class="text-center text-muted"><small>¿Ya tienes una cuenta? <a href="#/iniciar-sesion">Inicia Sesión ahora</a></small></p>
+      </form>
+    </div>
+  </div>
+
+</div>
