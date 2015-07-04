@@ -1,0 +1,59 @@
+<div class="container" ng-controller="ProfileCtrl">
+  <div class="jumbotron">
+    <div class="row">
+          <div class="col-lg-offset-2 col-lg-7">
+            <div class="well bs-component">
+              <form class="form-horizontal" name="updateForm" ng-submit="updateProfile()" novalidate ng-controller="ProfileCtrl">
+                <fieldset>
+                  <legend>Edita tu Pérfil</legend>
+                  <div class="form-group">
+                    <label for="name" class="col-lg-3 control-label">Nombre de Pila</label>
+                    <div class="col-lg-9">
+                      <input type="text" class="form-control" ng-model="name" name="name" placeholder="Nombre de Pila" required autofocus>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="lastName" class="col-lg-3 control-label">Apellido</label>
+                    <div class="col-lg-9">
+                      <input type="text" class="form-control" ng-model="lastName" name="lastName" placeholder="Apellido">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="email" class="col-lg-3 control-label">Correo</label>
+                    <div class="col-lg-9">
+                      <input type="email" class="form-control" ng-model="email" name="email" placeholder="Correo">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="postalCode" class="col-lg-3 control-label">Código Postal</label>
+                    <div class="col-lg-9">
+                      <input type="text" class="form-control" ng-minlength="5" ng-maxlength="5" ng-pattern="/^\d+$/" ng-model="postalCode" name="postalCode" placeholder="Código Postal">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="phone" class="col-lg-3 control-label">Telefono</label>
+                    <div class="col-lg-9">
+                      <input type="text" class="form-control" ng-model="phone" name="phone" placeholder="Teléfono">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="address" class="col-lg-3 control-label">Dirección</label>
+                    <div class="col-lg-9">
+                      <textarea class="form-control" rows="3" ng-model="address" name="address"></textarea>
+                      <span class="help-block">Al darnos tú dirección podremos ofrecerte una mejor atención</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-lg-9 col-lg-offset-3">
+                      <button type="reset" class="btn btn-default">Resetear</button>
+                      <button type="submit" class="btn btn-primary">Actualizar</button>
+                      <a href="#/avatar" class="btn btn-info">Cambiar Avatar</a>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+            <div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div></div>
+          </div>
+    </div>
+  </div>
+</div>

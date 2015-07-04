@@ -1,33 +1,66 @@
-<div class="container">
-  <div ng-if="isAuthenticated() && currentUser.username">
-    <div class="row">
-      <div ng-repeat="photo in photos" class="col-lg-2 col-sm-3 col-xs-4">
-        <a href="#/photo/{{photo.id}}">
-          <img ng-src="{{photo.images.standard_resolution.url}}" class="thumbnail img-responsive">
-        </a>
-      </div>
-    </div>
-  </div>
+<div class="container" ng-controller="HomeCtrl">
 
   <div ng-if="!isAuthenticated()">
-    <div class="jumbotron">
+    <div cg-busy="{promise:myPromise,message:'Espere Porfavor',backdrop:backdrop,templateUrl:'views/angular-busy.html',delay:300,minDuration:700}" class="jumbotron">
       <p>
         <a class="btn btn-lg btn-success" href="#/iniciar-sesion"><i class="ion-log-in"></i>  Iniciar Sesión</a>
         <a class="btn btn-lg btn-primary" href="#/registrarse"><i class="ion-person-add"></i>  Registrarse</a>
       </p>
       <h2><i class="ion-images"></i>Bienvenidos a barrioOS</h2>
       <p>Introduce tu codigo postal</p>
+      
+          <form name="searchForm" ng-submit="findBarrio()" ng-controller="HomeCtrl" novalidate >
+            <div class="form-group"  ng-class="{ 'has-error': searchForm.postalCode.$invalid && searchForm.postalCode.$dirty }">
+              <div class="input-group">
+                <span class="input-group-addon ion-location"></span>
+                <input ng-model="postalCode" ng-minlength="5" ng-maxlength="5" name="postalCode" type="text" placeholder="Introduce un codigo postal para la busqueda" ng-pattern="/^\d+$/" class="form-control" required >
+                <span class="input-group-btn">
+                  <button type="submit" ng-disabled="searchForm.$invalid" class="btn btn-success" type="button">  Ir  </button>
+                </span>
+              </div>              
+            </div>
+            <div ng-if="!searchForm.postalCode.$valid && searchForm.postalCode.$dirty" class="form-group">
+                <p>Por favor ingrese su codigo postal de 5 números</p>
+            </div>
+          </form>
+      
+      <div ng-if="barrio.id || notFound" >
+        <div class="panel panel-success ng-class:{'panel-info':notFound};">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{ barrio.name?barrio.name:'No se encontro' }}</h3>
+          </div>
+          <div class="panel-body">
+            <div ng-if="barrio.id">
+              <p> Pronto estaremos anexando informacion para este barrio </p>
+              <p> Código Postal: {{ barrio.postal_code }} </p>
+            </div>
+            <div ng-if="notFound">
+              <p>Lo sentimos estamos llenando nuestra base de datos con todos los barrios cercanos</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div ng-if="isAuthenticated() && !currentUser.username" class="center-form panel">
-    <div class="panel-body">
+  <div ng-if="isAuthenticated()" class="jumbotron">
+
+    <div ng-if="isRegister" class="alert alert-dismissible alert-warning">
+      <button type="button" class="close" data-dismiss="alert" ng-click="closeAnnouncement()" >×</button>
+      <h4>Gracias por registrarte</h4>
+      <p>Has recibido un email para que confirmes tu Dirección de correo.</p>
+    </div>
+
+    <h2><i class="ion-beer"></i>  Bienvenidos a la <span class="text-primary" >WEB</span> del Barrio 1</h2>
+    
+
+    <!--<div class="panel-body">
       <h5 class="text-center"><i class="ion-link"></i> Link Account</h5>
-      <p>To complete the registration process you must link your Instagram account.</p>
-      <button class="btn btn-block btn-instagram" ng-click="linkInstagram()">
+      <p>Bienvenidos a BarrioOS</p>
+      <!--<button class="btn btn-block btn-instagram" ng-click="linkInstagram()">
         <i class="ion-social-instagram"></i> Sign in with Instagram
       </button>
-    </div>
+    </div>-->
   </div>
 
 </div>

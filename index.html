@@ -8,24 +8,30 @@
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/paper/bootstrap.min.css">
 	<link rel="stylesheet" href="//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
 	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/ng-img-crop.css">
+	<link rel="stylesheet" href="css/angular-busy.css">
 </head>
 <body>
 	<div ng-controller="NavbarCtrl" class="navbar navbar-default navbar-static-top">
 	  <div class="container">
 	    <ul class="nav navbar-nav">
-	      <a href="/" class="navbar-brand"><i class="ion-images"></i> barrioOS</a>
+	      <a href="#/" class="navbar-brand"><i class="ion-images"></i> barrioOS</a>
 	      <li><a href="#/">Inicio</a></li>
 	      <li ng-if="!isAuthenticated()" ><a href="#/iniciar-sesion">Iniciar Sesión</a></li>
 	      <li ng-if="!isAuthenticated()" ><a href="#/registrarse">Registrarse</a></li>
-	      <li ng-if="isAuthenticated()" ><a ng-click="logout()" href="">Cerrar Sesión</a></li>
+	      <li ng-if="isAuthenticated()" ><a href="#/actividades/{{currentUser.postal_code}}">Actividades</a></li>
+	      <li ng-if="isAuthenticated()" ><a href="#/foros/{{currentUser.postal_code}}">Foros</a></li>
+	      <li ng-if="isAuthenticated()" ><a href="#/noticias/{{currentUser.postal_code}}">Noticias</a></li>
+
 	    </ul>
 	    <ul class="nav navbar-nav navbar-right">
-	      <li ng-if="isAuthenticated() && currentUser.username">
-	        <a href="http://instagram.com/{{currentUser.username}}">
-	          <img class="media-object img-rounded" ng-src="{{currentUser.picture}}">
-	          @{{currentUser.username}}
+	      <li ng-if="isAuthenticated()">
+	        <a href="#/perfil">
+	          <img class="media-object img-rounded" ng-src="{{thumb}}">
+	          {{currentUser.name}}
 	        </a>
 	      </li>
+	      <li ng-if="isAuthenticated()" ><a ng-click="logout()" href="">Cerrar Sesión</a></li>
 	    </ul>
 	  </div>
 	</div>
@@ -37,11 +43,24 @@
 	<script src="vendor/angular-route.js"></script>
 	<script src="vendor/angular-messages.js"></script>
 	<script src="vendor/satellizer.js"></script>
+	<script src="vendor/np-img-crop.js"></script>
+	<script src="vendor/FileApi.js"></script>
+	<script src="vendor/ng-file-upload-shim.js"></script>
+	<script src="vendor/ng-file-upload.js"></script>
+	<script src="vendor/pnglib.js"></script>
+	<script src="vendor/identicon.js"></script>
+	<script src="vendor/angular-md5.js"></script>
+	<script src="vendor/angular-busy.js"></script>
 	<script src="app.js"></script>
 	<script src="controllers/home.js"></script>
 	<script src="controllers/navbar.js"></script>
 	<script src="controllers/login.js"></script>
 	<script src="controllers/signup.js"></script>
+	<script src="controllers/avatar.js"></script>
+	<script src="controllers/activities.js"></script>
+	<script src="controllers/forums.js"></script>
+	<script src="controllers/news.js"></script>
+	<script src="controllers/profile.js"></script>
 	<script src="directives/serverError.js"></script>
 	<script src="services/api.js"></script>
 

@@ -1,15 +1,16 @@
 angular.module('barrioos')
   .factory('API', function($http) {
 
+    var baseUrl = 'http://api.barrioosger.com/';
+
     return {
-      getFeed: function() {
-        return $http.get('http://localhost:3000/api/feed');
-      },
-      getMediaById: function(id) {
-        return $http.get('http://localhost:3000/api/media/' + id);
-      },
-      likeMedia: function(id) {
-        return $http.post('http://localhost:3000/api/like', { mediaId: id });
+      getBarrioByPostalCode: function(postalCode) {
+        return $http.get(baseUrl + 'barrios/' + postalCode)
+        .then(function(response) {
+            console.log("en el factory");
+            console.log(response); //I get the correct items, all seems ok here
+            return response.data.barrio;
+        });
       }
     }
 

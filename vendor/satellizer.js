@@ -832,7 +832,8 @@
       function($q, config, storage, shared) {
         return {
           request: function(request) {
-            if (request.skipAuthorization) {
+            console.log(request.headers.Authorization);
+            if (request.skipAuthorization || request.headers.Authorization) {
               return request;
             }
              if (shared.isAuthenticated() && config.httpInterceptor) {

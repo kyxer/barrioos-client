@@ -6,12 +6,12 @@
       <form method="post" ng-submit="signup()" name="signupForm">
 
         <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.name.$invalid && signupForm.name.$dirty }">
-          <input class="form-control input-lg" type="text" id="name" name="name" ng-model="name" placeholder="Nombre de Pila" required>
+          <input class="form-control input-lg" type="text" id="name" name="name" ng-model="name" placeholder="Nombre de Pila" required autofocus>
           <span class="ion-person form-control-feedback"></span>
         </div>
 
         <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.email.$invalid && signupForm.email.$dirty }">
-          <input class="form-control input-lg" type="text" id="email" name="email" ng-model="email" placeholder="Correo" required>
+          <input class="form-control input-lg" type="email" id="email" name="email" ng-model="email" placeholder="Correo" required>
           <span class="ion-at form-control-feedback"></span>
         </div>
 
@@ -21,13 +21,13 @@
         </div>
 
         <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.postalCode.$invalid && signupForm.postalCode.$dirty }">
-          <input class="form-control input-lg" type="text" name="postalCode" ng-model="postalCode" placeholder="Código Postal" required>
+          <input class="form-control input-lg" type="text" ng-minlength="5" ng-maxlength="5" ng-pattern="/^\d+$/" name="postalCode" ng-model="postalCode" placeholder="Código Postal" required>
           <span class="ion-location form-control-feedback"></span>
         </div>
 
         <p class="text-center text-muted"><small>Al hacer clic en Registrarse, aceptas los <a href="#">términos y condiciones</a> y la <a href="#">política de privacidad</a></small></p>
 
-        <button type="submit" class="btn btn-block btn-primary">Registrarse</button>
+        <button ng-disabled="signupForm.$invalid" type="submit" class="btn btn-block btn-primary">Registrarse</button>
         <br/>
 
         <p class="text-center text-muted"><small>¿Ya tienes una cuenta? <a href="#/iniciar-sesion">Inicia Sesión ahora</a></small></p>
